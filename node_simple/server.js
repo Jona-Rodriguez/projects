@@ -40,7 +40,7 @@ const server = http.createServer((req, res) => {
       }
       if(params['student']== 'jonathan'){
         personName = 'Jona'
-        personOccupation = 'Programmer'
+        personOccupation = 'Software Engineer'
         personStatus = 'Stud muffin'
       }
         res.writeHead(200, {'Content-Type': 'application/json'});
