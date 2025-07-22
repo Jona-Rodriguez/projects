@@ -3,12 +3,12 @@ const app = express();
 const PORT = 8000;
 
 const rappers = {
-    '21 Savage': {
+    '21 savage': {
     'age': 29,
     'birthName': 'Bill',
     'birthLocation': 'London, England'
     },
-    'Chance the Rapper': {
+    'chance the rapper': {
         'age': 29,
         'birthName': 'Bob',
         'birthLocation': 'Texas, USA'
@@ -24,9 +24,14 @@ app.get('/', (request, response) =>{
     response.sendFile(__dirname + '/index.html');
 });
 
-app.get('/api', (request, response) =>{
-    response.json(rappers);
-});
+app.get('/api/:name', (request, response) =>{
+    const rapperName = request.params.name.toLowerCase();
+    if(rappers[rapperName]){
+        response.json(rappers[rapperName]);
+    }else{
+        response.json(rappers['unknown']);
+    }
+});  
 
 app.listen(PORT, ()=>{
     console.log(`Server running on port: ${PORT}`);
