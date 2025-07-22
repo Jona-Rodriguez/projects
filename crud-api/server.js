@@ -2,10 +2,22 @@ const express = require('express');
 const app = express();
 const PORT = 8000;
 
-const savage = {
+const rappers = {
+    '21 Savage': {
     'age': 29,
-    'birthName': 'bill',
+    'birthName': 'Bill',
     'birthLocation': 'London, England'
+    },
+    'Chance the Rapper': {
+        'age': 29,
+        'birthName': 'Bob',
+        'birthLocation': 'Texas, USA'
+    },
+    'unknown': {
+        'age': 99,
+        'birthName': 'Joe',
+        'birthLocation': 'Somewhere, Nevada'
+    }
 }
 
 app.get('/', (request, response) =>{
@@ -13,7 +25,7 @@ app.get('/', (request, response) =>{
 });
 
 app.get('/api', (request, response) =>{
-    response.json(savage);
+    response.json(rappers);
 });
 
 app.listen(PORT, ()=>{
