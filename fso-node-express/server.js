@@ -74,7 +74,8 @@ app.delete('/api/notes/:id', (request, response) => {
 
   response.status(204).end()
 }
-)// Use postman for local request testing or
+)
+// Use postman for local request testing or
 //  vscode rest client plugin instead
 // intellij webtorm newfile .rest also acceptable
 
