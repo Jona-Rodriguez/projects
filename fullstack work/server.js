@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const PORT = 3001
-
-// Current progress: 37
+app.use(express.json())
+// Current progress: 1:54
 
 let persons = [
     { 
@@ -56,4 +56,25 @@ app.delete('/api/persons/:id', (req,res) => {
   const id = NUMBER(req.params.id)
   persons = persons.filter(entry => entry != id)
   res.status(204).end()
-}))
+})
+
+const generateId = () =>{
+  const maxID = persons.length > 0 ?
+  Math.max( ...persons.map(n => n.id))
+  : 0
+  return maxID +1
+}
+
+app.post('/api/persons', (req,res) =>{
+  // const x = Math.random(1000) + 1
+  const body = req.body
+
+  let entry = {
+    id: generateId(),
+    name: body.name,
+    number: body.number
+  }
+
+  persons.push(entry)
+  res.json(entry)
+})
