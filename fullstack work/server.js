@@ -39,3 +39,7 @@ app.get('/info', (req, res) =>{
   const currentDate = new Date()
   res.send(`<h2>Phonebook has info for ${persons.length} people</h2> <h2>${currentDate}`)
 })
+
+app.get('/api/persons/:id', (req,res) => {
+    const id = req.params.id
+})
