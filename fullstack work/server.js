@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const PORT = 3001
 app.use(express.json())
-// Current progress: 1:54
 
 let persons = [
     { 
@@ -68,6 +67,18 @@ const generateId = () =>{
 app.post('/api/persons', (req,res) =>{
   // const x = Math.random(1000) + 1
   const body = req.body
+
+  if(!body.name){
+    return res.status(400).json({error: 'Name is missing'})
+  }
+  
+  if(!body.number){
+    return res.status(400).json({error: 'Number is missing'})
+  }
+
+  if(persons.some(entry => entry.name === body.name)){
+    return res.status(409).json({error: 'Name must be unique'})
+  }
 
   let entry = {
     id: generateId(),
